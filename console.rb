@@ -5,6 +5,11 @@ require_relative("models/ticket")
 
 require("pry")
 
+Ticket.delete_all()
+Screening.delete_all()
+Customer.delete_all()
+Film.delete_all()
+
 
 film1 = Film.new({"title" => "Priscilla queen of the desert", "price" => 10})
 film1.save

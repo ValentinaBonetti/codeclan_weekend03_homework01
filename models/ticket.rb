@@ -35,4 +35,18 @@ class Ticket
   end
 
 
+  # Class methods
+  def self.all()
+    sql = "SELECT * FROM tickets"
+    values = []
+    tickets = SqlRunner.run(sql, values)
+    return tickets.map { |ticket| Ticket.new(ticket) }
+  end
+
+  def self.delete_all()
+    sql = "DELETE FROM tickets"
+    values = []
+    SqlRunner.run(sql, values)
+  end
+
 end

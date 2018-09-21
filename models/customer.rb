@@ -31,4 +31,20 @@ class Customer
     SqlRunner.run(sql,values)
   end
 
+
+
+  # Class methods
+  def self.all()
+    sql = "SELECT * FROM customers"
+    values = []
+    customers = SqlRunner.run(sql, values)
+    return customers.map { |customer| Customer.new(customer) }
+  end
+
+  def self.delete_all()
+    sql = "DELETE FROM customers"
+    values = []
+    SqlRunner.run(sql, values)
+  end
+
 end
