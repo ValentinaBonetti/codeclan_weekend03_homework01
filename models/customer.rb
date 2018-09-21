@@ -31,6 +31,19 @@ class Customer
     SqlRunner.run(sql,values)
   end
 
+  # Show which films a customer has booked to see
+  def film_bookings()
+    sql = "SELECT films.* FROM
+            films INNER JOIN screenings
+            ON screenings.film_id = films.id
+            INNER JOIN tickets
+            ON tickets.screening_id = screenings.id
+            WHERE tickets.customer_id = $1"
+    values = [@id]
+    film_bookings = SqlRunner.run(sql,values)
+    return film_bookings.map{|film| Film.new(film)}
+  end
+
 
 
   # Class methods
