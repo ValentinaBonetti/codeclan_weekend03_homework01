@@ -50,6 +50,19 @@ class Film
     return customers.length
   end
 
+  def most_popular_time()
+    sql = "SELECT screenings.* FROM
+           screenings INNER JOIN tickets
+           ON tickets.screening_id = screenings.id
+           WHERE screenings.film_id = $1"
+    values = [@id]
+    sold_screenings = SqlRunner.run(sql,values)
+    sold_screenings_array = sold_screenings.map{|screening| Screening.new(screening)}
+    freq = sold_screenings_array.inject(Hash.new(0)) { |h,v| h[v] += 1; h }
+    most_sold = sold_screenings_array.max_by{ |v| freq[v] }
+    return most_sold.start_time
+  end
+
   # Class methods
   def self.all()
     sql = "SELECT * FROM films"

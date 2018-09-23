@@ -43,9 +43,14 @@ screening1.save
 screening2=Screening.new({"start_time" => "4:50","empty_seats" => 21, "film_id" => film2.id})
 screening2.save
 
+screening3=Screening.new({"start_time" => "6:50","empty_seats" => 21, "film_id" => film2.id})
+screening3.save
+
 ticket1 = cinema1.sell_ticket(customer1,screening1)
 ticket2 = cinema1.sell_ticket(customer1,screening2)
-ticket3 = cinema1.sell_ticket(customer2,screening1)
+ticket3 = cinema1.sell_ticket(customer2,screening2)
+ticket4 = cinema1.sell_ticket(customer2,screening3)
+
 
 
 
