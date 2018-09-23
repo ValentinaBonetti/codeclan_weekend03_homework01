@@ -3,18 +3,18 @@ require_relative("../db/sql_runner")
 class Cinema
 
   attr_reader :id
-  attr_accessor :name, :theatres, :till
+  attr_accessor :name, :theatres_list, :till
 
   def initialize(options)
     @id = options["id"].to_i if options["id"]
     @name = options["name"]
-    @theatres = options["theatres"]
+    @theatres = options["theatres_list"]
     @till = options["till"] || 0
   end
 
   def save()
-    sql = "INSERT INTO cinemas (name,theatres,till) VALUES ($1,$2,$3) RETURNING *"
-    values = [@name,@theatres,@till]
+    sql = "INSERT INTO cinemas (name,theatres_list,till) VALUES ($1,$2,$3) RETURNING *"
+    values = [@name,@theatres_list,@till]
     cinema = SqlRunner.run(sql,values).first
     @id = cinema["id"].to_i
   end
@@ -26,9 +26,9 @@ class Cinema
   end
 
   def update()
-    sql = "UPDATE cinemas SET (name,theatres,till) = ($1,$2,$3)
+    sql = "UPDATE cinemas SET (name,theatres_list,till) = ($1,$2,$3)
            WHERE id = $4"
-    values = [@name,@theatres,@till,@id]
+    values = [@name,@theatres_list,@till,@id]
     SqlRunner.run(sql,values)
   end
 

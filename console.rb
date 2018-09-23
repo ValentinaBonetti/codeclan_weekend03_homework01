@@ -22,7 +22,8 @@ theatre1.save
 theatre2.save
 theatre3.save
 
-cinema1 = Cinema.new({"name" => "Codeclan","theatres" => [theatre1,theatre2,theatre3]})
+cinema1 = Cinema.new({"name" => "Codeclan","theatres_list" => [theatre1,theatre2,theatre3]})
+cinema1.save
 
 film1 = Film.new({"title" => "Priscilla queen of the desert", "price" => 10})
 film1.save
