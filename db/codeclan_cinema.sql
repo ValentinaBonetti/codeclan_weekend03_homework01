@@ -2,6 +2,13 @@ DROP TABLE tickets;
 DROP TABLE screenings;
 DROP TABLE customers;
 DROP TABLE films;
+DROP TABLE theatres;
+
+CREATE TABLE theatres(
+  id SERIAL4 PRIMARY KEY,
+  theatre_number VARCHAR(255),
+  available_seats INT4
+);
 
 CREATE TABLE films(
   id SERIAL4 PRIMARY KEY,
