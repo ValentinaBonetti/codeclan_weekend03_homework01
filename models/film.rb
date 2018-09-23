@@ -45,6 +45,11 @@ class Film
     return customers_coming.map{|customer| Customer.new(customer)}
   end
 
+  def count_customers_coming()
+    customers = self.customers_coming
+    return customers.length
+  end
+
   # Class methods
   def self.all()
     sql = "SELECT * FROM films"
