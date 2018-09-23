@@ -37,13 +37,17 @@ customer1.save
 customer2 = Customer.new("name" => "Mohammed Sadi", "wallet" => 57)
 customer2.save
 
-
-
 screening1=Screening.new({"start_time" => "3:00","empty_seats" => 10, "film_id" => film1.id})
 screening1.save
 
 screening2=Screening.new({"start_time" => "4:50","empty_seats" => 21, "film_id" => film2.id})
 screening2.save
+
+ticket1 = cinema1.sell_ticket(customer1,screening1)
+ticket2 = cinema1.sell_ticket(customer1,screening2)
+ticket3 = cinema1.sell_ticket(customer2,screening1)
+
+
 
 
 

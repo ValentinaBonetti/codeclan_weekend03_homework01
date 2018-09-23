@@ -44,6 +44,11 @@ class Customer
     return film_bookings.map{|film| Film.new(film)}
   end
 
+  def count_tickets()
+    bookings = self.film_bookings
+    return bookings.length
+  end
+
 
 
   # Class methods

@@ -45,6 +45,7 @@ class Cinema
       customer.wallet -= film_price
       @till += film_price
       ticket = Ticket.new({"customer_id" => customer.id, "screening_id" => screening.id})
+      ticket.save 
       return ticket
     else return nil
     end
