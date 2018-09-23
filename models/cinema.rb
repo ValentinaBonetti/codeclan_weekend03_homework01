@@ -32,6 +32,24 @@ class Cinema
     SqlRunner.run(sql,values)
   end
 
+  def sell_ticket(customer,screening)
+    # select film price from screening:
+    sql = "SELECT films.price FROM
+           films INNER JOIN screenings
+           ON films.id = screenings.film_id
+           WHERE screenings.id = $1"
+    values = [screening.id]
+    film_price = SqlRunner.run(sql,values)[0]["price"].to_i
+    #
+    if (customer.wallet > film_price)
+      customer.wallet -= film_price
+      @till += film_price
+      ticket = Ticket.new({"customer_id" => customer.id, "screening_id" => screening.id})
+      return ticket
+    else return nil
+    end
+  end
+
 
 
   # Class methods
