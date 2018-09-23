@@ -27,7 +27,7 @@ class Theatre
   def update()
     sql = "UPDATE theatres SET (theatre_number,available_seats) = ($1,$2)
            WHERE id = $3"
-    values = [@theatre_number,@available_seats]
+    values = [@theatre_number,@available_seats,@id]
     SqlRunner.run(sql,values)
   end
 

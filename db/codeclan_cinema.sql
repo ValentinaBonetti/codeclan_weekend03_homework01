@@ -3,6 +3,14 @@ DROP TABLE screenings;
 DROP TABLE customers;
 DROP TABLE films;
 DROP TABLE theatres;
+DROP TABLE cinemas;
+
+CREATE TABLE cinemas(
+  id SERIAL4 PRIMARY KEY,
+  name VARCHAR(255),
+  theatres VARCHAR(255) ARRAY,
+  till INT8
+)
 
 CREATE TABLE theatres(
   id SERIAL4 PRIMARY KEY,
