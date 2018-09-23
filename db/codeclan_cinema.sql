@@ -34,7 +34,8 @@ CREATE TABLE screenings(
   id SERIAL4 PRIMARY KEY,
   start_time VARCHAR(255),
   empty_seats INT2,
-  film_id INT4 REFERENCES films(id) ON DELETE CASCADE
+  film_id INT4 REFERENCES films(id) ON DELETE CASCADE,
+  theatre_id INT4 REFERENCES theatres(id) ON DELETE CASCADE
 );
 
 CREATE TABLE tickets(

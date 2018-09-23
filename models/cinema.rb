@@ -33,7 +33,7 @@ class Cinema
   end
 
   def sell_ticket(customer,screening)
-    # select film price from screening:
+    # refactor: this could go in a get_film_price function:
     sql = "SELECT films.price FROM
            films INNER JOIN screenings
            ON films.id = screenings.film_id
@@ -41,11 +41,14 @@ class Cinema
     values = [screening.id]
     film_price = SqlRunner.run(sql,values)[0]["price"].to_i
     #
-    if (customer.wallet > film_price)
+    if (customer.wallet > film_price && screening.empty_seats > 0)
       customer.wallet -= film_price
+      customer.update 
       @till += film_price
+      screening.empty_seats -= 1
+      screening.update
       ticket = Ticket.new({"customer_id" => customer.id, "screening_id" => screening.id})
-      ticket.save 
+      ticket.save
       return ticket
     else return nil
     end
